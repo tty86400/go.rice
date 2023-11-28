@@ -7,10 +7,10 @@ import (
 	"path/filepath"
 	"sort"
 
-	"github.com/GeertJohan/go.rice/embedded"
+	"github.com/tty86400/go.rice/embedded"
 )
 
-//++ TODO: IDEA: merge virtualFile and virtualDir, this decreases work done by rice.File
+// ++ TODO: IDEA: merge virtualFile and virtualDir, this decreases work done by rice.File
 
 // virtualFile is a 'stateful' virtual file.
 // virtualFile wraps an *EmbeddedFile for a call to Box.Open() and virtualizes 'read cursor' (offset) and 'closing'.
@@ -31,7 +31,7 @@ func newVirtualFile(ef *embedded.EmbeddedFile) *virtualFile {
 	return vf
 }
 
-//++ TODO check for nil pointers in all these methods. When so: return os.PathError with Err: os.ErrInvalid
+// ++ TODO check for nil pointers in all these methods. When so: return os.PathError with Err: os.ErrInvalid
 
 func (vf *virtualFile) close() error {
 	if vf.closed {
@@ -113,16 +113,16 @@ func (vf *virtualFile) seek(offset int64, whence int) (int64, error) {
 	}
 	var e error
 
-	//++ TODO: check if this is correct implementation for seek
+	// ++ TODO: check if this is correct implementation for seek
 	switch whence {
 	case os.SEEK_SET:
-		//++ check if new offset isn't out of bounds, set e when it is, then break out of switch
+		// ++ check if new offset isn't out of bounds, set e when it is, then break out of switch
 		vf.offset = offset
 	case os.SEEK_CUR:
-		//++ check if new offset isn't out of bounds, set e when it is, then break out of switch
+		// ++ check if new offset isn't out of bounds, set e when it is, then break out of switch
 		vf.offset += offset
 	case os.SEEK_END:
-		//++ check if new offset isn't out of bounds, set e when it is, then break out of switch
+		// ++ check if new offset isn't out of bounds, set e when it is, then break out of switch
 		vf.offset = int64(len(vf.EmbeddedFile.Content)) - offset
 	}
 
@@ -157,7 +157,7 @@ func newVirtualDir(ed *embedded.EmbeddedDir) *virtualDir {
 }
 
 func (vd *virtualDir) close() error {
-	//++ TODO: needs sync mutex?
+	// ++ TODO: needs sync mutex?
 	if vd.closed {
 		return &os.PathError{
 			Op:   "close",
