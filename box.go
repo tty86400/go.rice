@@ -23,7 +23,7 @@ type Box struct {
 	appendd      *appendedBox
 }
 
-var defaultLocateOrder = []LocateMethod{LocateEmbedded, LocateAppended, LocateFS}
+var defaultLocateOrder = []LocateMethod{LocateEmbedded, LocateAppended, LocateWorkingDirectory}
 
 func findBox(name string, order []LocateMethod) (*Box, error) {
 	b := &Box{name: name}
