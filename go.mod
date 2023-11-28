@@ -1,4 +1,4 @@
-module github.com/tty86400/go.rice
+module github.com/giter/go.rice
 
 go 1.18
 
