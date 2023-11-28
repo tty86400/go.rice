@@ -1,6 +1,6 @@
 module github.com/GeertJohan/go.rice
 
-go 1.12
+go 1.18
 
 require (
 	github.com/GeertJohan/go.incremental v1.0.0
@@ -11,3 +11,5 @@ require (
 	github.com/nkovacs/streamquote v1.0.0
 	github.com/valyala/fasttemplate v1.0.1
 )
+
+require github.com/valyala/bytebufferpool v1.0.0 // indirect
